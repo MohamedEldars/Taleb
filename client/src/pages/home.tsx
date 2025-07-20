@@ -39,9 +39,40 @@ export default function Home() {
   return (
     <div className="pb-20" dir="rtl">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white">
-        <h2 className="text-xl font-bold mb-2">مرحباً بك في مجتمع طالب</h2>
-        <p className="text-primary-100">شارك أفكارك واكتشف محتوى زملائك</p>
+      <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white" dir="rtl">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-xl font-bold mb-2 arabic-text">مرحباً بك في مجتمع طالب</h2>
+            <p className="text-primary-100 arabic-text">شارك أفكارك واكتشف محتوى زملائك</p>
+          </div>
+          <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center">
+            <i className="fas fa-graduation-cap text-2xl"></i>
+          </div>
+        </div>
+      </div>
+
+      {/* Filter Section */}
+      <div className="p-4 bg-neutral-50" dir="rtl">
+        <div className="flex gap-2 overflow-x-auto pb-2">
+          <button className="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap">
+            الكل
+          </button>
+          <button className="bg-white text-neutral-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap border hover:bg-neutral-50">
+            الرياضيات
+          </button>
+          <button className="bg-white text-neutral-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap border hover:bg-neutral-50">
+            العلوم
+          </button>
+          <button className="bg-white text-neutral-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap border hover:bg-neutral-50">
+            الأدب
+          </button>
+          <button className="bg-white text-neutral-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap border hover:bg-neutral-50">
+            التاريخ
+          </button>
+          <button className="bg-white text-neutral-600 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap border hover:bg-neutral-50">
+            أسئلة
+          </button>
+        </div>
       </div>
 
       {/* Quick Actions */}

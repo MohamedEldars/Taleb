@@ -9,6 +9,7 @@ import Home from "@/pages/home";
 import Profile from "@/pages/profile";
 import Upload from "@/pages/upload";
 import Admin from "@/pages/admin";
+import Settings from "@/pages/settings";
 import NotFound from "@/pages/not-found";
 import BottomNavigation from "@/components/BottomNavigation";
 
@@ -30,23 +31,28 @@ function Router() {
     <div className="max-w-md mx-auto bg-white shadow-xl min-h-screen relative">
       {/* Header */}
       {isAuthenticated && (
-        <header className="bg-white border-b border-neutral-200 px-4 py-3 sticky top-0 z-50" dir="rtl">
+        <header className="bg-white border-b border-neutral-200 px-4 py-3 sticky top-0 z-50 shadow-sm">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <h1 className="text-2xl font-bold text-primary">طالب</h1>
-              <span className="text-sm text-neutral-500 font-medium">Taleb</span>
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Taleb
+              </h1>
+              <span className="text-xs bg-neutral-100 text-neutral-600 px-2 py-1 rounded-full">Student Hub</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <button className="p-2 text-neutral-600 hover:text-primary transition-colors">
+            <div className="flex items-center gap-2">
+              <button className="p-2 text-neutral-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
                 <i className="fas fa-search text-lg"></i>
               </button>
-              <button className="p-2 text-neutral-600 hover:text-primary transition-colors relative">
+              <button className="p-2 text-neutral-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-all relative">
                 <i className="fas fa-bell text-lg"></i>
-                <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">3</span>
+              </button>
+              <button className="p-2 text-neutral-600 hover:text-primary hover:bg-primary/5 rounded-lg transition-all">
+                <i className="fas fa-globe text-lg"></i>
               </button>
               <button 
                 onClick={() => window.location.href = '/api/logout'}
-                className="p-2 text-neutral-600 hover:text-red-500 transition-colors"
+                className="p-2 text-neutral-600 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
               >
                 <i className="fas fa-sign-out-alt text-lg"></i>
               </button>
@@ -66,6 +72,7 @@ function Router() {
               <Route path="/profile" component={Profile} />
               <Route path="/upload" component={Upload} />
               <Route path="/admin" component={Admin} />
+              <Route path="/settings" component={Settings} />
             </>
           )}
           <Route component={NotFound} />
