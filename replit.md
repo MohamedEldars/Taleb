@@ -53,10 +53,10 @@ Located in `shared/schema.ts`, defines:
 - **Sessions**: Required for authentication persistence
 
 ### Authentication System
-- Mock authentication for development
-- Replit Auth integration ready (sessions table mandatory)
+- **Firebase Authentication**: Real Google and email/password authentication
+- User profile creation and management via Firebase Firestore
 - Role-based access control (student/admin)
-- Automatic session management
+- Real-time authentication state management with AuthContext
 
 ### Content Management
 - **Post Types**: Text, image, PDF, question posts

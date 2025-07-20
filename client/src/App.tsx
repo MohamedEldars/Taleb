@@ -3,7 +3,8 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useAuth } from "@/hooks/useAuth";
+import { AuthProvider, useAuth } from "@/contexts/AuthContext";
+import { logOut } from "@/lib/firebase";
 import Landing from "@/pages/landing";
 import Home from "@/pages/home";
 import Profile from "@/pages/profile";
@@ -17,6 +18,14 @@ import BottomNavigation from "@/components/BottomNavigation";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -53,7 +62,7 @@ function Router() {
                 <i className="fas fa-globe text-lg"></i>
               </button>
               <button 
-                onClick={() => window.location.href = '/api/logout'}
+                onClick={handleLogout}
                 className="p-2 text-neutral-600 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
               >
                 <i className="fas fa-sign-out-alt text-lg"></i>
@@ -104,10 +113,12 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

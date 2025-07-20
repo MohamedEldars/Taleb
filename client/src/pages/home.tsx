@@ -1,16 +1,47 @@
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import PostCard from "@/components/PostCard";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import { getPosts } from "@/lib/firebase";
+
+interface Post {
+  id: string;
+  content: string;
+  subject?: string;
+  type: 'text' | 'question' | 'image' | 'pdf';
+  imageUrl?: string;
+  pdfUrl?: string;
+  privacy: 'public' | 'class';
+  authorId: string;
+  authorName: string;
+  authorPhoto?: string;
+  createdAt: Date;
+  likes: number;
+  commentsCount: number;
+  likedBy: string[];
+}
 
 export default function Home() {
-  const { user } = useAuth();
-  
-  const { data: posts, isLoading } = useQuery({
-    queryKey: ["/api/posts"],
-  });
+  const { user, userProfile } = useAuth();
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        const fetchedPosts = await getPosts();
+        setPosts(fetchedPosts as Post[]);
+      } catch (error) {
+        console.error("Error loading posts:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadPosts();
+  }, []);
 
   if (isLoading) {
     return (
@@ -42,7 +73,9 @@ export default function Home() {
       <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white" dir="rtl">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-bold mb-2 arabic-text">مرحباً بك في مجتمع طالب</h2>
+            <h2 className="text-xl font-bold mb-2 arabic-text">
+              مرحباً {userProfile?.displayName || "عزيزي الطالب"}
+            </h2>
             <p className="text-primary-100 arabic-text">شارك أفكارك واكتشف محتوى زملائك</p>
           </div>
           <div className="bg-white/20 rounded-full w-16 h-16 flex items-center justify-center">
@@ -101,15 +134,15 @@ export default function Home() {
             <span className="text-xs text-neutral-600 font-medium">مواد دراسية</span>
           </div>
           
-          {user && (
+          {userProfile && (
             <Link href="/profile">
               <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
                 <img 
-                  src={user.profileImageUrl || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"} 
+                  src={userProfile.photoURL || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"} 
                   alt="ملفي الشخصي" 
                   className="w-16 h-16 rounded-full object-cover border-3 border-secondary shadow-lg"
                 />
-                <span className="text-xs text-neutral-600 font-medium">{user.firstName}</span>
+                <span className="text-xs text-neutral-600 font-medium">{userProfile.displayName}</span>
               </div>
             </Link>
           )}
