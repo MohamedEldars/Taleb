@@ -170,34 +170,46 @@ export default function Upload() {
         <FileUpload files={files} onFilesChange={setFiles} />
 
         {/* Post Type Options */}
-        <div className="flex space-x-3">
-          <Button
-            type="button"
-            variant={postType === "image" ? "default" : "outline"}
-            className="flex-1 flex items-center justify-center space-x-2 py-3"
-            onClick={() => handlePostTypeChange("image")}
-          >
-            <i className="fas fa-image"></i>
-            <span className="font-medium">صورة</span>
-          </Button>
-          <Button
-            type="button"
-            variant={postType === "pdf" ? "default" : "outline"}
-            className="flex-1 flex items-center justify-center space-x-2 py-3"
-            onClick={() => handlePostTypeChange("pdf")}
-          >
-            <i className="fas fa-file-pdf"></i>
-            <span className="font-medium">PDF</span>
-          </Button>
-          <Button
-            type="button"
-            variant={postType === "question" ? "default" : "outline"}
-            className="flex-1 flex items-center justify-center space-x-2 py-3"
-            onClick={() => handlePostTypeChange("question")}
-          >
-            <i className="fas fa-question-circle"></i>
-            <span className="font-medium">سؤال</span>
-          </Button>
+        <div>
+          <Label className="block text-sm font-medium text-neutral-700 mb-3">نوع المنشور</Label>
+          <div className="grid grid-cols-2 gap-3">
+            <Button
+              type="button"
+              variant={postType === "text" ? "default" : "outline"}
+              className="flex items-center justify-center gap-2 py-4 text-center"
+              onClick={() => handlePostTypeChange("text")}
+            >
+              <i className="fas fa-align-right text-lg"></i>
+              <span className="font-medium">نص</span>
+            </Button>
+            <Button
+              type="button"
+              variant={postType === "image" ? "default" : "outline"}
+              className="flex items-center justify-center gap-2 py-4 text-center"
+              onClick={() => handlePostTypeChange("image")}
+            >
+              <i className="fas fa-image text-lg"></i>
+              <span className="font-medium">صورة</span>
+            </Button>
+            <Button
+              type="button"
+              variant={postType === "pdf" ? "default" : "outline"}
+              className="flex items-center justify-center gap-2 py-4 text-center"
+              onClick={() => handlePostTypeChange("pdf")}
+            >
+              <i className="fas fa-file-pdf text-lg"></i>
+              <span className="font-medium">ملف PDF</span>
+            </Button>
+            <Button
+              type="button"
+              variant={postType === "question" ? "default" : "outline"}
+              className="flex items-center justify-center gap-2 py-4 text-center"
+              onClick={() => handlePostTypeChange("question")}
+            >
+              <i className="fas fa-question-circle text-lg"></i>
+              <span className="font-medium">سؤال</span>
+            </Button>
+          </div>
         </div>
 
         {/* Category Selection */}

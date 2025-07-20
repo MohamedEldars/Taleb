@@ -46,25 +46,41 @@ export default function Home() {
 
       {/* Quick Actions */}
       <div className="p-4">
-        <div className="flex space-x-4 overflow-x-auto pb-2">
+        <div className="flex gap-4 overflow-x-auto pb-2" dir="rtl">
           <Link href="/upload">
-            <div className="flex flex-col items-center space-y-2 flex-shrink-0 cursor-pointer">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform">
+            <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform shadow-lg">
                 <i className="fas fa-plus text-xl"></i>
               </div>
               <span className="text-xs text-neutral-600 font-medium">أضف منشور</span>
             </div>
           </Link>
           
-          {user && (
-            <div className="flex flex-col items-center space-y-2 flex-shrink-0">
-              <img 
-                src={user.profileImageUrl || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"} 
-                alt="My profile" 
-                className="w-16 h-16 rounded-full object-cover border-2 border-secondary"
-              />
-              <span className="text-xs text-neutral-600 font-medium">{user.firstName}</span>
+          <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
+            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform shadow-lg">
+              <i className="fas fa-question-circle text-xl"></i>
             </div>
+            <span className="text-xs text-neutral-600 font-medium">اطرح سؤال</span>
+          </div>
+          
+          <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
+            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white hover:scale-105 transition-transform shadow-lg">
+              <i className="fas fa-book text-xl"></i>
+            </div>
+            <span className="text-xs text-neutral-600 font-medium">مواد دراسية</span>
+          </div>
+          
+          {user && (
+            <Link href="/profile">
+              <div className="flex flex-col items-center gap-2 flex-shrink-0 cursor-pointer">
+                <img 
+                  src={user.profileImageUrl || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"} 
+                  alt="ملفي الشخصي" 
+                  className="w-16 h-16 rounded-full object-cover border-3 border-secondary shadow-lg"
+                />
+                <span className="text-xs text-neutral-600 font-medium">{user.firstName}</span>
+              </div>
+            </Link>
           )}
         </div>
       </div>

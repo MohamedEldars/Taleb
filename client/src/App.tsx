@@ -77,12 +77,14 @@ function Router() {
 
       {/* Floating Action Button */}
       {isAuthenticated && (
-        <button 
-          onClick={() => window.location.href = '/upload'}
-          className="fixed bottom-24 right-4 bg-accent text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-40"
-        >
-          <i className="fas fa-edit text-xl"></i>
-        </button>
+        <div className="fixed bottom-24 right-4 z-40">
+          <button 
+            onClick={() => window.location.href = '/upload'}
+            className="bg-gradient-to-r from-primary to-secondary text-white rounded-full w-14 h-14 flex items-center justify-center shadow-xl hover:scale-110 hover:shadow-2xl transition-all duration-300 border-4 border-white"
+          >
+            <i className="fas fa-plus text-xl"></i>
+          </button>
+        </div>
       )}
     </div>
   );

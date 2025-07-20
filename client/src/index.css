@@ -1,3 +1,9 @@
+/* Font Awesome icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,8 +80,17 @@
   [dir="rtl"] {
     direction: rtl;
     text-align: right;
+    font-family: 'Inter', 'Cairo', 'Amiri', 'system-ui', sans-serif;
   }
 
+  /* Arabic font improvements */
+  .arabic-text {
+    font-feature-settings: "kern" 1, "liga" 1;
+    text-rendering: optimizeLegibility;
+    line-height: 1.6;
+  }
+
+  /* RTL spacing fixes */
   [dir="rtl"] .space-x-3 > * + * {
     margin-right: 0.75rem;
     margin-left: 0;
@@ -89,6 +104,19 @@
   [dir="rtl"] .space-x-2 > * + * {
     margin-right: 0.5rem;
     margin-left: 0;
+  }
+
+  /* Better RTL gap support */
+  [dir="rtl"] .gap-2 {
+    gap: 0.5rem;
+  }
+  
+  [dir="rtl"] .gap-3 {
+    gap: 0.75rem;
+  }
+  
+  [dir="rtl"] .gap-4 {
+    gap: 1rem;
   }
 
   /* Custom animations */
@@ -168,8 +196,4 @@
   }
 }
 
-/* Font Awesome icons */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-/* Google Fonts - Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');

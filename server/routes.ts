@@ -74,6 +74,61 @@ export async function registerRoutes(app: Express): Promise<Server> {
     role: "admin"
   });
 
+  await storage.upsertUser({
+    id: "student-2",
+    email: "sara@example.com",
+    firstName: "سارة",
+    lastName: "أحمد",
+    profileImageUrl: "https://images.unsplash.com/photo-1494790108755-2616b332a7ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+    grade: "الصف الثاني عشر - أدبي",
+    school: "مدرسة الشارقة الثانوية",
+    role: "student"
+  });
+
+  await storage.upsertUser({
+    id: "student-3",
+    email: "omar@example.com",
+    firstName: "عمر",
+    lastName: "حسن",
+    profileImageUrl: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100",
+    grade: "الصف العاشر",
+    school: "مدرسة الشارقة الثانوية",
+    role: "student"
+  });
+
+  // Add some sample posts to make the app look populated
+  await storage.createPost("student-2", {
+    content: "من يستطيع مساعدتي في فهم قوانين نيوتن في الفيزياء؟ خاصة القانون الثالث للحركة 🤔",
+    subject: "فيزياء",
+    type: "question",
+    attachments: [],
+    privacy: "public"
+  });
+
+  await storage.createPost("student-3", {
+    content: "شاركت اليوم في مسابقة الرياضيات على مستوى المدرسة والحمد لله حصلت على المركز الثاني! 🏆\n\nالمسائل كانت صعبة بس التدريب المستمر خلاني أقدر أحلها.",
+    subject: "رياضيات",
+    type: "text",
+    attachments: [],
+    privacy: "public"
+  });
+
+  await storage.createPost("admin-1", {
+    content: "تذكير هام لجميع الطلاب: موعد امتحانات نهاية الفصل الأول سيبدأ يوم 15 ديسمبر.\n\nيرجى مراجعة الجدول الزمني المرفق والاستعداد جيداً.",
+    subject: "إعلانات إدارية",
+    type: "text",
+    attachments: [],
+    privacy: "public"
+  });
+
+  await storage.createPost("student-1", {
+    content: "لمن يريد مراجعة درس الكيمياء العضوية، سأكون في المكتبة غداً الساعة 2 بعد الظهر لجلسة مراجعة جماعية 📚",
+    subject: "كيمياء",
+    type: "text",
+    attachments: [],
+    privacy: "public"
+  });
+
   // Auth routes (mock for development)
   app.get('/api/auth/user', mockAuth, async (req: any, res) => {
     try {

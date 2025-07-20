@@ -5,8 +5,7 @@ const navItems = [
   { path: "/", icon: "fas fa-home", label: "الرئيسية", page: "home" },
   { path: "/profile", icon: "fas fa-user", label: "ملفي", page: "profile" },
   { path: "/upload", icon: "fas fa-plus", label: "إنشاء", page: "upload", isFloating: true },
-  { path: "/admin", icon: "fas fa-cog", label: "إدارة", page: "admin" },
-  { path: "/notifications", icon: "fas fa-bell", label: "إشعارات", page: "notifications" },
+  { path: "/admin", icon: "fas fa-user-shield", label: "إدارة", page: "admin" },
 ];
 
 export default function BottomNavigation() {

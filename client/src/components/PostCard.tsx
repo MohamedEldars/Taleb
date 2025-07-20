@@ -134,31 +134,40 @@ export default function PostCard({ post }: PostCardProps) {
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-white/90 border-neutral-200" dir="rtl">
+    <Card className="backdrop-blur-sm bg-white/90 border-neutral-200 shadow-sm hover:shadow-md transition-shadow" dir="rtl">
       <CardContent className="p-4">
-        <div className="flex items-center space-x-3 mb-3">
+        <div className="flex items-center gap-3 mb-3">
           <img 
             src={post.author.profileImageUrl || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=50&h=50"} 
             alt={`${post.author.firstName} ${post.author.lastName}`} 
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-10 h-10 rounded-full object-cover border-2 border-neutral-100"
           />
           <div className="flex-1">
-            <h3 className="font-semibold text-neutral-800">
-              {post.author.firstName} {post.author.lastName}
-            </h3>
+            <div className="flex items-center gap-2">
+              <h3 className="font-semibold text-neutral-800">
+                {post.author.firstName} {post.author.lastName}
+              </h3>
+              {post.author.role === 'admin' && (
+                <div className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                  <i className="fas fa-shield-alt text-xs mr-1"></i>
+                  إدارة
+                </div>
+              )}
+            </div>
             <p className="text-xs text-neutral-500">
               {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true, locale: ar })}
             </p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             {getPostTypeIcon()}
             <Button 
               variant="ghost" 
               size="sm"
               onClick={() => reportMutation.mutate("محتوى غير مناسب")}
               disabled={reportMutation.isPending}
+              className="hover:bg-red-50 hover:text-red-600"
             >
-              <i className="fas fa-ellipsis-h text-neutral-400"></i>
+              <i className="fas fa-ellipsis-v text-neutral-400"></i>
             </Button>
           </div>
         </div>
@@ -179,29 +188,31 @@ export default function PostCard({ post }: PostCardProps) {
         {renderAttachment()}
         
         <div className="flex items-center justify-between text-neutral-500">
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => likeMutation.mutate()}
               disabled={likeMutation.isPending}
-              className={`flex items-center space-x-1 hover:text-accent transition-colors ${
-                isLiked ? 'text-accent' : ''
+              className={`flex items-center gap-2 hover:text-red-500 transition-colors ${
+                isLiked ? 'text-red-500' : ''
               }`}
             >
               <i className={isLiked ? "fas fa-heart" : "far fa-heart"}></i>
-              <span className="text-sm">{likesCount}</span>
+              <span className="text-sm font-medium">{likesCount}</span>
             </Button>
-            <Button variant="ghost" size="sm" className="flex items-center space-x-1 hover:text-primary transition-colors">
+            <Button variant="ghost" size="sm" className="flex items-center gap-2 hover:text-blue-500 transition-colors">
               <i className="far fa-comment"></i>
-              <span className="text-sm">{post.commentsCount || 0}</span>
+              <span className="text-sm font-medium">{post.commentsCount || 0}</span>
             </Button>
-            <Button variant="ghost" size="sm" className="hover:text-secondary transition-colors">
-              <i className="far fa-share-square"></i>
+            <Button variant="ghost" size="sm" className="hover:text-green-500 transition-colors">
+              <i className="far fa-share"></i>
             </Button>
           </div>
           {post.subject && (
-            <span className="text-xs bg-neutral-100 px-2 py-1 rounded">{post.subject}</span>
+            <span className="text-xs bg-gradient-to-r from-primary/10 to-secondary/10 text-primary px-3 py-1 rounded-full font-medium border border-primary/20">
+              {post.subject}
+            </span>
           )}
         </div>
       </CardContent>
