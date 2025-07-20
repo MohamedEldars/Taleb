@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 
 const navItems = [
   { path: "/", icon: "fas fa-home", label: "الرئيسية", page: "home" },
-  { path: "/profile", icon: "fas fa-user", label: "ملفي", page: "profile" },
+  { path: "/calendar", icon: "fas fa-calendar", label: "التقويم", page: "calendar" },
   { path: "/upload", icon: "fas fa-plus", label: "إنشاء", page: "upload", isFloating: true },
+  { path: "/profile", icon: "fas fa-user", label: "ملفي", page: "profile" },
   { path: "/settings", icon: "fas fa-cog", label: "إعدادات", page: "settings" },
-  { path: "/admin", icon: "fas fa-user-shield", label: "إدارة", page: "admin" },
 ];
 
 export default function BottomNavigation() {

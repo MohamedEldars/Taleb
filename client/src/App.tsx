@@ -10,6 +10,8 @@ import Profile from "@/pages/profile";
 import Upload from "@/pages/upload";
 import Admin from "@/pages/admin";
 import Settings from "@/pages/settings";
+import Calendar from "@/pages/calendar";
+import Achievements from "@/pages/achievements";
 import NotFound from "@/pages/not-found";
 import BottomNavigation from "@/components/BottomNavigation";
 
@@ -73,6 +75,8 @@ function Router() {
               <Route path="/upload" component={Upload} />
               <Route path="/admin" component={Admin} />
               <Route path="/settings" component={Settings} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/achievements" component={Achievements} />
             </>
           )}
           <Route component={NotFound} />

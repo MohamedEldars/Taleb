@@ -8,6 +8,14 @@ This is a full-stack social media application called "Taleb" (طالب) designed
 
 Preferred communication style: Simple, everyday language.
 
+## Project Creator Context
+
+This project is created by a high school student (Grade 12) who is passionate about helping fellow students through technology. The creator starts school in 11 days and wants to build this platform to benefit students of similar age. Since the creator has limited web development experience, explanations should be educational and include:
+- Clear explanations of technical concepts
+- Step-by-step guidance for modifications
+- Best practices for student developers
+- Focus on practical, useful features for high school students
+
 ## System Architecture
 
 ### Frontend Architecture
